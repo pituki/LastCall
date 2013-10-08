@@ -14,7 +14,7 @@ var log = function(x){
   console.log("log "+x);
 }
 var greet = function(y, z){
-  console.log("hi "+y+" was "+ z);
+  console.log(""+y+" was "+ z);
 }
 
 
@@ -25,7 +25,7 @@ l("yep"); // will log 'log yep' because it was registered last
 var g = lastCall.register(greet);
 
 l("yep"); // will not execute log
-g("alex","here");  // will log 'hi alex was here' because it was registered last
+g("alex","here");  // will log 'alex was here' because it was registered last
 l("yep");// will not execute log
 
 ```
