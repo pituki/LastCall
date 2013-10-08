@@ -5,7 +5,8 @@ Tool for asyncronous javascript calls. To be used when there are multiple callba
 
 
 Example:
-'''
+
+```
 var lastCall = new LastCall();
 
 // functions 
@@ -27,5 +28,5 @@ l("yep"); // will not execute log
 g("alex","here");  // will log 'hi alex was here' because it was registered last
 l("yep");// will not execute log
 
-'''
+```
 
