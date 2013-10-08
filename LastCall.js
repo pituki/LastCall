@@ -1,5 +1,5 @@
 /* Author: Pituki */
-var lastCall = function(){
+var LastCall = function(){
   var index = 0;
   this.register = function(success){
     var i = index++;
