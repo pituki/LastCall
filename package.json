@@ -1,0 +1,27 @@
+{
+  "name": "LastCall",
+  "version": "0.0.0",
+  "description": "LastCall ========",
+  "main": "LastCall.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pituki/LastCall"
+  },
+  "keywords": [
+    "Async",
+    "last",
+    "Call",
+    "Callback",
+    "success",
+    ""
+  ],
+  "author": "Pituki",
+  "license": "BSD",
+  "gitHead": "aa21b2d906cfbacdee0f3348d47fefc9e21ead18",
+  "readmeFilename": "README.md"
+}
