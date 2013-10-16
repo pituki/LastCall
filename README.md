@@ -2,7 +2,7 @@ LastCall
 ========
 "!https://travis-ci.org/pituki/LastCall.png!":https://travis-ci.org/pituki/LastCall
 
-Tool for asyncronous javascript calls. To be used when there are multiple callbacks to be registered and only the last one needs to be called.
+Tool for asynchronous javascript calls. To be used when there are multiple callbacks to be registered and only the last one needs to be called.
 
 
 Example:
