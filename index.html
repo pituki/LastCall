@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lastcall by pituki</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Lastcall</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/pituki/LastCall">View the Project on GitHub <small>pituki/LastCall</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/pituki/LastCall/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/pituki/LastCall/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/pituki/LastCall">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="lastcall" class="anchor" href="#lastcall"><span class="octicon octicon-link"></span></a>LastCall</h1>
+
+<p>Tool for asyncronous javascript calls. To be used when there are multiple callbacks to be registered and only the last one needs to be called.</p>
+
+<p>Example:</p>
+
+<pre><code>var lastCall = new LastCall();
+
+// functions 
+var log = function(x){
+  console.log("log "+x);
+}
+var greet = function(y, z){
+  console.log(""+y+" was "+ z);
+}
+
+
+var l = lastCall.register(log);
+
+l("yep"); // will log 'log yep' because it was registered last
+
+var g = lastCall.register(greet);
+
+l("yep"); // will not execute log
+g("alex","here");  // will log 'alex was here' because it was registered last
+l("yep");// will not execute log
+
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/pituki">pituki</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
