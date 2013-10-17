@@ -9,7 +9,15 @@ module.exports = function(grunt) {
 		jshint: {
 			options: {
 			},
-			all: ['Gruntfile.js', 'LastCall.js']
+			all: ['Gruntfile.js', 'LastCall.js','tests/*.js']
+		},
+		jasmine:{
+			all:{
+				src:'LastCall.js',
+				options:{
+					specs:'tests/*Spec.js'
+				}
+			}
 		}
 	});
 
@@ -17,7 +25,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
 
 	// Default task(s).
-	grunt.registerTask('default', ['jshint']);
-	grunt.registerTask('test',['jshint']);
+	grunt.registerTask('default', ['test']);
+	grunt.registerTask('test',['jshint','jasmine']);
 
 };
