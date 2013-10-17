@@ -5,7 +5,9 @@ var LastCall = function(){
     var i = index++;
     return function(){
       if(i==index-1){
-        success.apply(this, Array.prototype.slice.call(arguments) );
+        return success.apply(this, Array.prototype.slice.call(arguments) );
+      } else {
+        return;
       }
     };
   };
