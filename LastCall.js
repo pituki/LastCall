@@ -6,7 +6,10 @@ LastCall = function() {
     return new LastCall();
 
   var index = 0;
-
+  /*
+  register will return a function, this function when executed will execute the function sent as a parameter.
+  when register gets executed multiple times, previous callbacks will not execute only the last registered callback
+  */
   var register = function(success) {
     var iterate = index++;
 
@@ -18,11 +21,17 @@ LastCall = function() {
         return;
       }
     };
-
+  };
+  /*
+  invalidateLast will last callback to return undefined.
+  */
+  var invalidateLast = function(){ 
+      return index++;  
   };
 
   return {
-    register: register
+    register: register,
+    invalidateLast: invalidateLast
   };
 
 };

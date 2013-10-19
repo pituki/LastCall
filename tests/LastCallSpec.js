@@ -2,7 +2,6 @@
 function helloWorld() {
 	return "Hello world!";
 }
-//console.log(LastCall);
 
 describe('LastCall', function() {
 	var lastCall,
@@ -33,6 +32,15 @@ describe('LastCall', function() {
 		expect( lastCall.register( second )() ).toEqual( "second callback");
 		expect( firstCallback()).toEqual( undefined );
 		expect( first() ).toEqual( "first callback" );
+	});
+	
+	it('should overwrite first function and 2nd callback when I call invalidateLast', function() {
+		var firstCallback = lastCall.register( first );
+		expect( firstCallback() ).toEqual( "first callback");
+		expect( lastCall.register( second )() ).toEqual( "second callback");
+		expect( firstCallback()).toEqual( undefined );
+		lastCall.invalidateLast();
+		expect( firstCallback()).toEqual( undefined );
 	});
 
 });
