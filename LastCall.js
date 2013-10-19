@@ -22,7 +22,7 @@ LastCall = function() {
   };
 
   return {
-    callIt: register
+    register: register
   };
 
 };
