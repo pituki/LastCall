@@ -1,14 +1,28 @@
-/* Author: Pituki */
-var LastCall = function(){
+var LastCall = LastCall || {};
+
+LastCall = function() {
+
+  if ( !(this instanceof LastCall) )
+    return new LastCall();
+
   var index = 0;
-  this.register = function(success){
-    var i = index++;
-    return function(){
-      if(i==index-1){
-        return success.apply(this, Array.prototype.slice.call(arguments) );
+
+  var register = function(success) {
+    var iterate = index++;
+
+    return function() {
+      if (iterate == index - 1) {
+        var args = Array.prototype.slice.call(arguments);
+        return success.apply(this, args);
       } else {
         return;
       }
     };
+
   };
+
+  return {
+    callIt: register
+  };
+
 };
