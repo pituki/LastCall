@@ -6,7 +6,8 @@ function helloWorld() {
 describe('LastCall', function() {
 	var lastCall,
 		first = function(){return "first callback";},
-		second = function(){return "second callback";};
+		second = function(){return "second callback";},
+		third = function(){return "third callback";};
 	beforeEach(function() {
 		lastCall = new LastCall();
 	});
@@ -34,7 +35,7 @@ describe('LastCall', function() {
 		expect( first() ).toEqual( "first callback" );
 	});
 	
-	it('should overwrite first function and 2nd callback when I call invalidateLast', function() {
+	it('should overwrite 2nd callback when I call invalidateLast', function() {
 		var firstCallback = lastCall.register( first );
 		expect( firstCallback() ).toEqual( "first callback");
 		expect( lastCall.register( second )() ).toEqual( "second callback");
@@ -42,5 +43,27 @@ describe('LastCall', function() {
 		lastCall.invalidateLast();
 		expect( firstCallback()).toEqual( undefined );
 	});
+	it('should overwrite first function and 2nd callback when I call invalidateLast', function() {
+		var firstCallback = lastCall.register( first );
+		expect( firstCallback() ).toEqual( "first callback");
+		var secondCallback = lastCall.register( second );
+		expect( secondCallback()  ).toEqual( "second callback");
+		lastCall.invalidateLast();
+		expect( secondCallback()  ).toEqual( undefined );
+		expect( firstCallback()).toEqual( undefined );
+		lastCall.invalidateLast();
+		expect( firstCallback()).toEqual( undefined );
+	});
+	it('should overwrite all calls except last registered call', function() {
+		var firstCallback = lastCall.register( first );
+		var secondCallback = lastCall.register( second );
+		var thirdCallback = lastCall.register( third );
+		expect( firstCallback()  ).toEqual( undefined );
+		expect( secondCallback() ).toEqual( undefined);
+		expect( thirdCallback()  ).toEqual( "third callback" );
+		lastCall.invalidateLast();
+		expect( thirdCallback()  ).toEqual( undefined );
+	});
+	
 
 });
