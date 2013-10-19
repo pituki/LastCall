@@ -65,5 +65,4 @@ describe('LastCall', function() {
 		expect( thirdCallback()  ).toEqual( undefined );
 	});
 	
-
 });
