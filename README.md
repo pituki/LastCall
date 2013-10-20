@@ -2,32 +2,22 @@ LastCall
 ========
 [![Build Status](https://travis-ci.org/pituki/LastCall.png)](https://travis-ci.org/pituki/LastCall)
 
-Tool for asynchronous javascript calls. To be used when there are multiple callbacks to be registered and only the last one needs to be called.
+### This feature adds more functionality than just the last call   
+
+Tool to handle Backbone.sync(). What we want to be able to do is:  
+
+1. Register the async calls and abort the previous request if a new request is initialzed.  
+2. Know what views are assigned to current view that have AJAX requests that we want to terminate.  
+
+### To Do  
+1. Determine if we are trying to terminate the last call
+2. If we have multiple views, how we will determine which of the views we are terminating the AJAX request 
+
 
 
 Example:
 
 ```
-var lastCall = new LastCall();
-
-// functions 
-var log = function(x){
-  console.log("log "+x);
-}
-var greet = function(y, z){
-  console.log(""+y+" was "+ z);
-}
-
-
-var l = lastCall.register(log);
-
-l("yep"); // will log 'log yep' because it was registered last
-
-var g = lastCall.register(greet);
-
-l("yep"); // will not execute log
-g("alex","here");  // will log 'alex was here' because it was registered last
-l("yep");// will not execute log
+coming soon
 
 ```
-
