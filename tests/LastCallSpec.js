@@ -15,7 +15,8 @@ describe('LastCall', function() {
 		lastCall = new LastCall();
 	});
 	it("should call firstSpy when only registerin a function", function(){
-		expect(lastCall.register(firstSpy).and.identity() ).toEqual("first Spy");	
+		lastCall.register(firstSpy)();
+		expect( firstSpy ).toHaveBeenCalled();
 	});
 	it('should retun a function when registering a function', function() {
 		expect(lastCall.register( first )() ).toEqual( "first callback");
