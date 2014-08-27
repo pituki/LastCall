@@ -7,9 +7,15 @@ describe('LastCall', function() {
 	var lastCall,
 		first = function(){return "first callback";},
 		second = function(){return "second callback";},
-		third = function(){return "third callback";};
+		third = function(){return "third callback";},
+		firstSpy= jasmine.createSpy("first Spy"),
+		secondSpy= jasmine.createSpy("second Spy");
+		
 	beforeEach(function() {
 		lastCall = new LastCall();
+	});
+	it("should call firstSpy when only registerin a function", function(){
+		expect(lastCall.register(firstSpy).and.identity() ).toEqual("first Spy");	
 	});
 	it('should retun a function when registering a function', function() {
 		expect(lastCall.register( first )() ).toEqual( "first callback");
