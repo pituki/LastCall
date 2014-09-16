@@ -71,5 +71,57 @@ describe('LastCall', function() {
 		lastCall.invalidateLast();
 		expect( thirdCallback()  ).toEqual( undefined );
 	});
+    it("Should work with two instances", function(){
+        var LastCallB = new LastCall();
+        expect( LastCallB).not.toEqual( lastCall );
+        var firstCallback = lastCall.register( first );
+        var secondCallback = lastCall.register( second );
+
+        var firstCallbackB = LastCallB.register( first );
+        var secondCallbackB = LastCallB.register( second );
+        expect(firstCallback()).toEqual( undefined );
+        expect(firstCallbackB()).toEqual( undefined );
+        expect(secondCallback()).toEqual( "second callback" );
+        expect(secondCallbackB()).toEqual( "second callback" );
+
+    });
+    it("Should work with two instances", function(){
+        var LastCallB = new LastCall(),
+            aspy= jasmine.createSpy("first Spy");
+        expect( LastCallB).not.toEqual( lastCall );
+        var firstCallback = lastCall.register( aspy );
+        var secondCallback = lastCall.register( second );
+
+        var firstCallbackB = LastCallB.register( first );
+        var secondCallbackB = LastCallB.register( second );
+        expect(firstCallback()).toEqual( undefined );
+        expect(firstCallbackB()).toEqual( undefined );
+        expect(secondCallback()).toEqual( "second callback" );
+        expect(secondCallbackB()).toEqual( "second callback" );
+        expect( aspy ).not.toHaveBeenCalled();
+
+    });
+    it("Should work with two instances mixmatched", function(){
+        var LastCallB = new LastCall(),
+            aspy= jasmine.createSpy("a Spy"),
+            bspy= jasmine.createSpy("b Spy"),
+            cspy= jasmine.createSpy("c Spy"),
+            dspy= jasmine.createSpy("d Spy");
+        expect( LastCallB).not.toEqual( lastCall );
+        var firstCallback = lastCall.register( aspy );
+        var secondCallback = lastCall.register( bspy );
+
+        var firstCallbackB = LastCallB.register( cspy );
+        var secondCallbackB = LastCallB.register( dspy );
+        expect(firstCallback()).toEqual( undefined );
+        expect(firstCallbackB()).toEqual( undefined );
+        expect(secondCallback()).toEqual( undefined );
+        expect(secondCallbackB()).toEqual( undefined );
+        expect( aspy ).not.toHaveBeenCalled();
+        expect( cspy ).not.toHaveBeenCalled();
+        expect( bspy ).toHaveBeenCalled();
+        expect( dspy ).toHaveBeenCalled();
+
+    });
 	
 });
